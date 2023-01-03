@@ -28,6 +28,8 @@
 
 ### sumOfArray のリファクタ
 
+https://github.com/axtx4869/praha-challenge-templates/pull/1/commits/b6ad35c645e55785031f178835c85492a6565072
+
 ### Property Based Testing
 
 **なぜこのテストの考え方がコード品質を向上してくれる可能性があるのか**
