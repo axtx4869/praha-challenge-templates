@@ -13,8 +13,8 @@ describe("sumOfArray関数のテスト", () => {
     expect(sumOfArray([1, 2, 3])).toBe(6);
   });
 
-  it("引数に空配列を与えた場合TypeErrorが発生する", () => {
-    expect(() => sumOfArray([])).toThrow(TypeError);
+  it("引数に空配列を与えた場合0を返す", () => {
+    expect(sumOfArray([])).toBe(0);
   });
 });
 
