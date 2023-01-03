@@ -4,6 +4,12 @@
 
 ## 課題 2
 
+https://github.com/axtx4869/praha-challenge-templates/pull/1/commits/2bd058ec16a83f8b6b42a38928cf085d6de10765
+
+https://github.com/axtx4869/praha-challenge-templates/pull/1/commits/4c6b78112fb650e0e865d7beeca78eba692752f4
+
+※nameApiService.ts の単体テストは実装途中です 🙇‍♂️
+
 ## 課題 3
 
 ### カバレッジ 100%のテストが書けなかった理由
