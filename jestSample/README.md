@@ -67,3 +67,56 @@ https://github.com/axtx4869/praha-challenge-templates/pull/1/commits/b6ad35c645e
 **保守性**
 
 - 無駄なテストを書かない。[Testing Trophy](https://kentcdodds.com/blog/the-testing-trophy-and-testing-classifications)などに則って、書くべきテストだけ書く。
+
+## 課題4
+
+テストコードを書いていただく関数
+
+https://github.com/axtx4869/praha-challenge-templates/blob/unit-test-with-jest/jestSample/furuno.ts
+
+**Jestに関するクイズ**
+
+Q1.  
+`jest.fn()`は以下のように`mockName`メソッドを提供している。
+この、mockNameメソッドはどのような場面で役立つでしょうか？
+
+```javascript
+const myMockFn = jest
+  .fn()
+  .mockReturnValue('mockReturnValue')
+  .mockName('mockNameです');
+```
+
+Q2.  
+以下のテストは当然PASSしません。PASSさせるには、actualにどのような値を代入すればよいでしょうか？
+
+```javascript
+describe('hogehoge', () => {
+  it('mockImplementationOnceで定義されている個数を上回る場合どうなるかの問題', () => {
+    const mockFn = jest
+      .fn()
+      .mockImplementationOnce(() => 'first call')
+      .mockImplementationOnce(() => 'second call');
+
+    mockFn(); // 'first call'
+    mockFn(); // 'second call'
+    const expected = mockFn();
+    const actual = '???';
+    expect(expected).toBe(actual);
+  });
+});
+```
+
+Q3.  
+PASSするのはどれでしょうか？　(undefined, null, NaN, 0, '')
+
+```javascript
+describe('expect.anything()の評価対象に関しての問題', () => {
+    it.each([undefined, null, NaN, 0, ''])('expect.anything()で%pは評価できるか', (arg) => {
+    const mockFn = jest.fn((arg: any) => arg);
+    mockFn(arg);
+    expect(mockFn).toHaveBeenCalledWith(expect.anything());
+  });
+});
+```
+
