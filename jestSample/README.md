@@ -81,7 +81,11 @@ https://github.com/axtx4869/praha-challenge-templates/pull/1/commits/b6ad35c645e
 
 テストコードを書いていただく関数
 
-https://github.com/axtx4869/praha-challenge-templates/blob/unit-test-with-jest/jestSample/furuno.ts
+[furuno.ts](https://github.com/axtx4869/praha-challenge-templates/blob/unit-test-with-jest/jestSample/furuno.ts)
+
+`furuno.ts`でimportしているモジュール
+
+[zipcodeApiService.ts](https://github.com/axtx4869/praha-challenge-templates/blob/unit-test-with-jest/jestSample/zipcodeApiService.ts)
 
 **Jest に関するクイズ**
 
