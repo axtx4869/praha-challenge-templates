@@ -4,11 +4,18 @@
 
 ## 課題 2
 
+### functions.tsの単体テスト
+DIを用いた実装に修正
+
 https://github.com/axtx4869/praha-challenge-templates/pull/1/commits/2bd058ec16a83f8b6b42a38928cf085d6de10765
+
+テストコードの実装
 
 https://github.com/axtx4869/praha-challenge-templates/pull/1/commits/4c6b78112fb650e0e865d7beeca78eba692752f4
 
-※nameApiService.ts の単体テストは実装途中です 🙇‍♂️
+### nameApiService.tsの単体テスト
+
+https://github.com/axtx4869/praha-challenge-templates/pull/1/commits/75df59bce98a926964c5a332daf1368a291103c7
 
 ## 課題 3
 
@@ -46,6 +53,8 @@ https://github.com/axtx4869/praha-challenge-templates/pull/1/commits/b6ad35c645e
 **逆に採用しない方が良いケースはあるか？**
 
 不明・・・。
+
+参考：[When to choose Example based testing and property based for Stateful Testing](https://stackoverflow.com/questions/72359149/when-to-choose-example-based-testing-and-property-based-for-stateful-testing)
 
 ### 単体テストケースを増やしても可読性、保守性、実行速度などに問題が起きないよう工夫できることを 3 つ
 
@@ -115,4 +124,41 @@ describe("expect.anything()の評価対象に関しての問題", () => {
     expect(mockFn).toHaveBeenCalledWith(expect.anything());
   });
 });
+```
+
+## 課題5
+
+[mui/material-ui](https://github.com/mui/material-ui/blob/612db95ec47fdd9e30f9cb33b99df3af5a972542/test/utils/mochaHooks.test.js)
+
+`breforeEach`がArrage, `it`がAct, `afterEach`がAssertionとなっており、各スコープごとにAAAの責務が分割されている。(`afterEach`でcleanupも行っている？かもなので微妙だが、なるほどと思いました)
+
+[styled-components/styled-components](https://github.com/styled-components/styled-components/blob/main/packages/styled-components/src/hoc/withTheme.spec.tsx)
+
+`cosole.warn`はテストの関心対象では無いので、mockしてあげて何もしないようにしてあげている。
+テスト実行時にブラウザのwindowオブジェクト周りの扱いってどうするのかなと思っていたので参考になった
+
+[pmndrs/jotai](https://github.com/pmndrs/jotai/blob/main/tests/core/optimization.test.tsx)
+
+Reactのコンポーネントなどのテストの場合、イベントを発火させた後すぐにassertionメソッドで検証するのではなく、コンポーネントの状態変化が完了するのを待ってからassertionメソッドで検証しないといけないという気づきを得た。状態変化後のコンポーネントの状態になっていることが確認できてからassertionしている？っぽい
+
+```typescript
+    const renderCount1AfterMount = renderCount1
+    const renderCount2AfterMount = renderCount2
+
+    fireEvent.click(getByText('button1'))
+    await waitFor(() => {
+      getByText('count1: 1')
+      getByText('count2: 0')
+    })
+    expect(renderCount1).toBe(renderCount1AfterMount + 1)
+    expect(renderCount2).toBe(renderCount2AfterMount + 0)
+
+    fireEvent.click(getByText('button2'))
+    await waitFor(() => {
+      getByText('count1: 1')
+      getByText('count2: 1')
+    })
+    expect(renderCount1).toBe(renderCount1AfterMount + 1)
+    expect(renderCount2).toBe(renderCount2AfterMount + 1)
+
 ```
